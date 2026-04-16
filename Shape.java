@@ -1,10 +1,10 @@
 import java.awt.Color;
 
-public class Shapes {
+public class Shape {
     private Tetrominos pieceShape;
     private int currentRotation;
 
-    public Shapes() {
+    public Shape() {
         setShape(Tetrominos.NoShape);
     }
 
