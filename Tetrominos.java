@@ -8,7 +8,7 @@ public enum Tetrominos {
         {
             {0}             //tượng trưng cho mỗi ô trống
         },
-    },Color.CYAN),
+    },Color.BLACK),
 
     I (new int[][][] {
         {
@@ -82,6 +82,7 @@ public enum Tetrominos {
             {0,1}
         }
     },Color.BLUE),
+
     T (new int[][][] {      //4 góc quay
         {
             {1,1,1},
@@ -115,10 +116,6 @@ public enum Tetrominos {
         }
     },Color.PINK);
 
-    // Trả về số lượng trạng thái xoay của khối đó
-    public int getRotationCount() {
-        return this.shape.length; 
-    }
     public final int[][][] shape;
     public final Color color;
     //gọi constructor để truyền dữ liệu của 7 loại khối
@@ -126,12 +123,25 @@ public enum Tetrominos {
         this.shape = shape;
         this.color = color;
     }
+
+    // Trả về số lượng trạng thái xoay của khối đó
+    public int getRotationCount() {
+        return this.shape.length; 
+    }
+    
     // lấy random 1 loại khối để rơi, sau này dùng trong class
     // Shape và Board
+    private static final Random random = new Random();
     public static Tetrominos getRandomShape() {
-    Random random = new Random();
-    Tetrominos[] values = Tetrominos.values();
-    // values[0] thường là NoShape, nên lấy từ index 1 đến hết
-    return values[random.nextInt(values.length - 1) + 1];
+        Tetrominos[] values = Tetrominos.values();
+        return values[random.nextInt(values.length - 1) + 1];
+    }
+    
+    public int[][] getShape(int rotation) {
+        return shape[rotation];
+    }
+
+    public Color getColor() {
+        return color;
     }
 }
