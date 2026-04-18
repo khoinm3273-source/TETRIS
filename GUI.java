@@ -32,7 +32,11 @@ class GamePanel extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.BLACK);
         this.setLayout(null);
-        pm = new PlayManager();
+        KeyHandler keyH = new KeyHandler();
+        pm = new PlayManager(keyH);
+        this.addKeyListener(keyH);
+        this.setFocusable(true);    
+        this.requestFocusInWindow();
     }
 
     public void launchGame() {
