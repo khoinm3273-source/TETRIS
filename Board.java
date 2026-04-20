@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 public class Board extends JPanel {
     private int width = 10, height = 20;
     private Tetrominos[][] grid;
+    private GameState curentState;
 
     public void clearBoard() {          //tạo board trống
         for (int y = 0; y < height; y++) {
@@ -15,6 +16,8 @@ public class Board extends JPanel {
     public Board() {
         grid = new Tetrominos[height][width];
         clearBoard();
+        // Start game
+        currentState = GameState.START_MENU;
     }
 
     public boolean isValidPosition(int[][] shape, int x, int y) {       //check va chạm
