@@ -2,6 +2,8 @@ package src.DrawUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.io.IOException;
+import src.Manager.SoundManager;
 
 import java.io.IOException;
 
@@ -23,6 +25,7 @@ public class MenuUI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        SoundManager.getInstance().playBGM("src/resources/sounds/menu.wav");
     }
 
     public void draw(Graphics2D g2) {
