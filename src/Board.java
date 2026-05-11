@@ -4,8 +4,12 @@ import java.awt.Graphics2D;
 public class Board {
     private int width = 10, height = 20;
     private Tetrominos[][] grid;
+    private src.SoundManager soundManager;
+    
     public Board() {
         grid = new Tetrominos[height][width];
+        //Âm thanh
+        soundManager =  SoundManager.getInstance();
         clearBoard();
     }
 
@@ -95,6 +99,9 @@ public class Board {
             if (full) {
                 rows[count++] = r;
             }
+        }
+        if (count > 0) {
+            soundManager.playSFX("src/resources/sounds/score.wav");
         }
         return count;
     }
