@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import src.GameState;
+import src.Manager.SoundManager;
 
 import java.io.IOException;
 
@@ -26,6 +27,13 @@ public class OverlayUI {
 
     public void update(GameState state) {
         if (state == GameState.GAME_OVER) {
+            //Phát nhạc Game Over
+            if (!gameOverSoundPlayed) {
+                SoundManager.getInstance().stopBGM(); // Tắt nhạc nền
+                SoundManager.getInstance().playSFX("src/resources/sounds/game-over.wav"); // Bật tiếng thua
+                gameOverSoundPlayed = true; //
+            }
+
             overlayAlpha += 0.02f;
             if (overlayAlpha > 1f) overlayAlpha = 1f;
         }
