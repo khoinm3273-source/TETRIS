@@ -201,7 +201,10 @@ public class PlayManager {
     public void handleMouseClick(int mx, int my) {
         if (currentState == GameState.START_MENU) {
             int index = menu.getButtonIndex(mx, my);
-            if (index == 0) startGame();
+            if (index == 0) {
+                //Bật nhạc khi ấn Play
+                src.Manager.SoundManager.getInstance().playBGM("src/resources/sounds/game.wav");
+                startGame();}
             else if (index == 1) currentState = GameState.HOW_TO_PLAY;
             else if (index == 2) System.exit(0);
         } 
@@ -209,7 +212,8 @@ public class PlayManager {
             if (overlayUI.backBtn.contains(mx, my)) currentState = GameState.START_MENU;
         }
         else if (currentState == GameState.GAME_OVER) {
-            if (overlayUI.playAgainBtn.contains(mx, my)) startGame();
+            if (overlayUI.playAgainBtn.contains(mx, my)){
+                src.SoundManager.getInstance().playBGM("src/resources/sounds/game.wav"); startGame();}
             if (overlayUI.quitBtn.contains(mx, my)) System.exit(0);
         }
     }
